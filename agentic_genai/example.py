@@ -1,20 +1,24 @@
 from .factory import AgentFactory
 from .mediator import AgentMediator
 from .builder import PromptBuilder
-from .rag import migrate, search
+from .rag import search_documents
 
 
 def main(task: str) -> None:
     migrate()
-    planner = AgentFactory.create_agent("planner")
-    executor = AgentFactory.create_agent("executor")
+    planner = AgentFactory.create_agent("planner", "planner")
+    executor = AgentFactory.create_agent("executor", "executor")
     mediator = AgentMediator(planner, executor)
-    prompt = PromptBuilder().add(task).build()
-    docs = search(task)
-    if docs:
-        prompt += "\n" + "\n".join(docs)
+    context = search_documents(task)
+    builder = PromptBuilder().add(task)
+    context = search_documents(task)
+    # context = search(task)
+    if context:
+        builder.add(context)
+    prompt = builder.build()
     result = mediator.handle(prompt)
     print(result)
+
 
 if __name__ == "__main__":
     import sys

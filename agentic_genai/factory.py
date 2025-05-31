@@ -1,10 +1,11 @@
-from .agents import PlannerAgent, ExecutorAgent, BaseAgent, Memory
+from .agent import PlannerAgent, ExecutorAgent, Agent, Memory
+
 
 class AgentFactory:
     @staticmethod
-    def create_agent(agent_type: str, memory: Memory | None = None) -> BaseAgent:
+    def create_agent(agent_type: str, name: str, memory: Memory | None = None) -> Agent:
         if agent_type == "planner":
-            return PlannerAgent(memory)
+            return PlannerAgent(name, memory)
         if agent_type == "executor":
-            return ExecutorAgent(memory)
-        raise ValueError(f"unknown agent type: {agent_type}")
+            return ExecutorAgent(name, memory)
+        raise ValueError(f"unknown type {agent_type}")

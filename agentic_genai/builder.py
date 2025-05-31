@@ -1,4 +1,5 @@
 class PromptBuilder:
+  
     def __init__(self) -> None:
         self.parts: list[str] = []
 

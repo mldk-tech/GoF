@@ -24,6 +24,9 @@ class AgentFactory:
             return ExecutorAgent()
         raise ValueError("unknown type")
 ```
+- **יתרון**: מאפשר החלפה קלה של רכיבים ויצירת סוכנים מותאמים.
+
+
 
 ### Singleton
 ניהול רכיבים מערכתיים בעלי מופע יחיד, כגון מנהל תצורה או לוגים.
@@ -40,6 +43,7 @@ class Config:
     def load(self):
         self.settings = {}
 ```
+- **יתרון**: מבטיח שימוש עקבי במנהלי משאבים ושיתוף תצורה.
 
 ### Builder
 הרכבה הדרגתית של פרומפטים או סוכנים עם יכולות מרובות.
@@ -54,6 +58,8 @@ class PromptBuilder:
         return "\n".join(self.parts)
 ```
 
+- **יתרון**: מאפשר הרכבה גמישה של פרומפטים וסוכנים מורכבים.
+
 ## 3. דפוסי מבנה (Structural)
 
 ### Adapter
@@ -66,6 +72,8 @@ class SearchAdapter:
         return self.api_client.do_search(q=query)
 ```
 
+- **יתרון**: מאפשר אינטגרציה מהירה עם שירותים חיצוניים.
+
 ### Composite
 הרכבת סוכן מורכב מסוכנים פשוטים יותר ופניה אליו כאל יחידה אחת.
 ```python
@@ -76,6 +84,10 @@ class CompositeAgent:
         for agent in self.agents:
             agent.run(task)
 ```
+
+- **יתרון**: מאפשר בניית היררכיות של סוכנים והפעלה אחידה שלהם.
+
+
 
 ### Decorator
 הוספת תכונות לסוכן קיים ללא שינוי בקוד המקורי.
@@ -90,6 +102,9 @@ class LoggingAgent:
         return result
 ```
 
+- **יתרון**: מאפשר הרחבת יכולות הסוכן ללא שינוי הקוד המקורי.
+
+
 ### Facade
 מתן ממשק אחיד לפעולות מורכבות של כמה סוכנים וכלים.
 ```python
@@ -101,6 +116,9 @@ class ProjectBot:
         plan = self.planner.plan(req)
         return self.executor.execute(plan)
 ```
+
+- **יתרון**: מפשט שימוש במערכת מרובת רכיבים דרך ממשק אחד.
+
 
 ## 4. דפוסי התנהגות (Behavioral)
 
@@ -116,6 +134,8 @@ class IntentAgent:
         if self.next_agent:
             return self.next_agent.handle(req)
 ```
+- **יתרון**: מאפשר שלבי עיבוד מודולריים וגמישים.
+
 
 ### Observer
 עדכון סוכנים על אירועים במערכת בצורה אסינכרונית.
@@ -129,6 +149,9 @@ class EventBus:
         for fn in self.subscribers:
             fn(event)
 ```
+
+- **יתרון**: מאפשר הפצת אירועים והגברת מודולריות.
+
 
 ### Strategy
 בחירה דינמית של אלגוריתם או גישה בהתאם למצב.
@@ -144,6 +167,8 @@ class LocalSearch(SearchStrategy):
         return local_index.lookup(query)
 ```
 
+- **יתרון**: מאפשר בחירה או החלפה של אלגוריתמים בזמן ריצה.
+
 ### Mediator
 רכיב מתווך המנהל תקשורת בין סוכנים שונים.
 ```python
@@ -154,6 +179,8 @@ class TaskCoordinator:
         for agent in self.agents:
             agent.notify(task)
 ```
+
+- **יתרון**: מצמצם תלות ישירה בין סוכנים ומרכז את בקרת הזרימה.
 
 ### State
 שינוי התנהגות סוכן לפי מצבו הפנימי.
@@ -170,6 +197,8 @@ class ProcessingState(AgentState):
     def handle(self, agent, data):
         agent.process(data)
 ```
+
+- **יתרון**: מאפשר שליטה ברורה בהתנהגות הסוכן בהתאם למצבו.
 
 ## 5. ניתוח יתרונות וחסרונות
 
