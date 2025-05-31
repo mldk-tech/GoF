@@ -10,3 +10,8 @@ def test_create_planner():
 def test_create_executor():
     agent = AgentFactory.create_agent("executor", "e")
     assert isinstance(agent, ExecutorAgent)
+
+    
+def test_factory():
+    assert isinstance(AgentFactory.create_agent("planner"), PlannerAgent)
+    assert isinstance(AgentFactory.create_agent("executor"), ExecutorAgent)

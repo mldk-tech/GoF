@@ -10,5 +10,7 @@ class AgentMediator:
     @monitor_call
     def handle(self, task: str) -> str:
         plan = self.planner.act(task)
+        # plan = self.planner.run(task)
         result = self.executor.act(plan)
+        # result = self.executor.run(plan)
         return result

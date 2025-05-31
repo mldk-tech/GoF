@@ -7,4 +7,5 @@ def test_mediator_flow():
     executor = AgentFactory.create_agent("executor", "e")
     mediator = AgentMediator(planner, executor)
     result = mediator.handle("task")
-    assert result == "Executed Plan for task"
+    assert result == "Executed Plan for task | DONE:PLAN:task"
+

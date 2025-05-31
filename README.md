@@ -1,6 +1,7 @@
 # GoF Agentic GenAI Examples
 
 This repo demonstrates Gang of Four (GoF) design patterns in a small Agentic GenAI example.
+This repository basedon demonstrates applying Gang of Four design patterns in a small Agentic GenAI example.
 
 ## Setup
 Run the database migration to seed sample documents:
@@ -9,19 +10,20 @@ Run the database migration to seed sample documents:
 python -m agentic_genai.db_migrate
 ```
 
-## Example script
+## Running the example script
 Execute a simple planner/executor flow:
 
 ```bash
-python -m agentic_genai.example "write code"
+python -m agentic_genai.example "write docs"
 ```
 
-## FastAPI service
+## Running the FastAPI service
 Start the service with uvicorn:
 
 ```bash
 uvicorn agentic_genai.service:app --reload
 ```
+Then open http://localhost:8000 in your browser.
 
 POST `/task` with form field `task` to process a request.
 
@@ -29,7 +31,5 @@ POST `/task` with form field `task` to process a request.
 Run the unit tests with:
 
 ```bash
-pytest -q
+pytest -q or python -m pytest -q
 ```
-
-See `research_GoF_Agentic_GenAI.md` for the research document.

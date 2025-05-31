@@ -5,11 +5,14 @@ from .rag import search_documents
 
 
 def main(task: str) -> None:
+    migrate()
     planner = AgentFactory.create_agent("planner", "planner")
     executor = AgentFactory.create_agent("executor", "executor")
     mediator = AgentMediator(planner, executor)
     context = search_documents(task)
     builder = PromptBuilder().add(task)
+    context = search_documents(task)
+    # context = search(task)
     if context:
         builder.add(context)
     prompt = builder.build()
@@ -19,4 +22,5 @@ def main(task: str) -> None:
 
 if __name__ == "__main__":
     import sys
-    main(sys.argv[1] if len(sys.argv) > 1 else "demo")
+    task = sys.argv[1] if len(sys.argv) > 1 else "demo"
+    main(task)
